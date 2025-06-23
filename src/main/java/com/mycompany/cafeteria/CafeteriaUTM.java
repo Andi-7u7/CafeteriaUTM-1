@@ -25,59 +25,7 @@ public class CafeteriaUTM {
 
     static int numPedido = 0;
 
-    public static void main(String[] args) {
-        CafeteriaUTM cafeteria = new CafeteriaUTM();
-        cafeteria.mostrarMenuPrincipal();
-
-    }
-
-    public void mostrarMenuPrincipal() {
-        byte opc = 0;
-
-        do {
-            System.out.println("  ");
-            System.out.println("__________________");
-            System.out.println("BIENVENIDO A LA CAFETERIA UTM");
-            System.out.println("__________________");
-            System.out.println("Selecciona el menu de las operaciones a realizar");
-            System.out.println("1. Gestionar Productos, Empleados y Clientes");
-            System.out.println("2. Levantar pedidos y ventas");
-            System.out.println("3. Reportes de ventas");
-            System.out.println("4. Salir");
-            System.out.println("Dame la opcion");
-            opc = teclado.nextByte();
-
-            switch (opc) {
-                case 1:
-                    System.out.println("____LISTADO DE EMPLEADOS____");
-                    this.ConstruirObjetosEmpleados();
-                    this.MostrarObjetoEmpleados();
-                    System.out.println("  ");
-                    System.out.println("____LISTADO DE CLIENTES____");
-                    this.ConstruirObjetosClientes();
-                    this.MostrarObjetosClientes();
-                    System.out.println("  ");
-                    System.out.println("____LISTADO DE COMIDAS____");
-                    this.RegistrarProductosComida();
-                    this.ConsultarProductosComida();
-                    System.out.println("  ");
-                    System.out.println("____LISTADO DE BEBIDAS____");
-                    this.RegistrarProductosBebida();
-                    this.ConsultarProductosBebida();
-                    System.out.println("  ");
-                    break;
-
-                case 2:
-                    this.RegistrarPedidosClientes();
-                    break;
-
-                case 3:
-                    this.MostrarObjetosClientes();
-                    break;
-            }
-        } while (opc != 3);
-    }
-
+   
     private void ConstruirObjetosEmpleados() {
         Encargado empleado1 = new Encargado(1, "Paco", "Matutino");
         Encargado empleado2 = new Encargado(2, "Elliot", "Vespertino");
@@ -88,6 +36,7 @@ public class CafeteriaUTM {
     private void MostrarObjetoEmpleados() {
         for (int i = 0; i < arregloEncargado.size(); i++) {
             arregloEncargado.get(i).mostrardatosE();
+            arregloEmpleados.get(i).getTurno();
         }
     }
     //Construyendo Objeto Cliente
@@ -142,6 +91,56 @@ public class CafeteriaUTM {
             System.out.println("Id: " + i + ":");
             arreglomenuBebida.get(i).mostrarDB();
         }
+    }
+     public static void main(String[] args) {
+        CafeteriaUTM cafeteria = new CafeteriaUTM();
+        cafeteria.mostrarMenuPrincipal();
+
+    }
+
+    public void mostrarMenuPrincipal() {
+        byte opc = 0;
+        ConstruirObjetosEmpleados();
+        ConstruirObjetosClientes();
+        RegistrarProductosComida();
+        RegistrarProductosBebida();
+
+        do {
+            System.out.println("  ");
+            System.out.println("__________________");
+            System.out.println("BIENVENIDO A LA CAFETERIA UTM");
+            System.out.println("__________________");
+            System.out.println("Selecciona el menu de las operaciones a realizar");
+            System.out.println("1. Gestionar Productos, Empleados y Clientes");
+            System.out.println("2. Levantar pedidos y ventas");
+            System.out.println("3. Reportes de ventas");
+            System.out.println("4. Salir");
+            System.out.println("Dame la opcion");
+            opc = teclado.nextByte();
+
+            switch (opc) {
+                case 1:
+                    System.out.println("____LISTADO DE EMPLEADOS____");
+                    this.ConstruirObjetosEmpleados();
+                    this.MostrarObjetoEmpleados();
+                    System.out.println("  ");
+                    System.out.println("____LISTADO DE CLIENTES____");
+                    this.ConstruirObjetosClientes();
+                    this.MostrarObjetosClientes();
+                    System.out.println("  ");
+                    System.out.println("____LISTADO DE COMIDAS____");
+                    this.RegistrarProductosComida();
+                    this.ConsultarProductosComida();
+                    System.out.println("  ");
+                    System.out.println("____LISTADO DE BEBIDAS____");
+                    this.RegistrarProductosBebida();
+                    this.ConsultarProductosBebida();
+                    System.out.println("  ");
+                    break;
+
+                case 2:
+            }
+        } while (opc != 4);
     }
 
     private void RegistrarPedidosClientes() {
